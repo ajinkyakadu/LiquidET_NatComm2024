@@ -61,14 +61,15 @@ The setup should take less than a minute on a normal desktop computer.
    ```matlab
    cd examples
    ```
-2. **Run the Reconstruction Script**: Execute the `ex01_step01_N4Liquid.m` script to perform CS-DART reconstruction.
+2. **Run the Reconstruction Script**: Execute the `ex01_step01_N4Liquid.m` script to perform CS-DART reconstruction for N=4 tetrahedral colloidal assembly
    ```matlab
    ex01_step01_N4Liquid
    ```
-3. **Run the Post-Processing Script**: Execute the `ex01_step02_N4Liquid.m` script to obtain quantitative indicators.
+3. **Run the Post-Processing Script**: Execute the `ex01_step02_N4Liquid.m` script to obtain quantitative indicators for N=4 tetrahedral colloidal assembly
    ```matlab
    ex01_step02_N4Liquid
    ```
+The dataset that contains 3D reconstructions and quantitative indicators for 3 different colloidal system (N = 4, N=5 and N=6) can be downloaded from the [Zenodo](https://zenodo.org/records/11175299/)
 
 ### Expected Output
 - The first script (`ex01_step01_N4Liquid.m`) will output a CS-DART reconstructed volume saved as `csdart_reconstructed_volume.rec` in the `data` folder.
