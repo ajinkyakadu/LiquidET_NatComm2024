@@ -11,10 +11,10 @@ This repository contains the reconstruction algorithm (CS-DART) and post-process
 }
 ```
 This paper presents a novel approach to understanding the true three-dimensional (3D) structure of small colloidal assemblies within liquid cells using fast electron tomography. We introduce a new reconstruction algorithm, CS-DART (Compressed Sensing Discrete Algebraic Reconstruction Technique), designed to address the unique challenges posed by the high electron dose sensitivity of samples and the presence of liquid in high-angle annular dark-field scanning transmission electron microscopy (HAADF-STEM) imaging.  
-- **Innovative Technique:** The paper introduces CS-DART, an advanced algorithm that combines compressed sensing and discrete tomographic principles to enhance the reconstruction of colloidal particles from electron tomography data acquired in liquid cells.
-- **Complex Structures Unveiled:** By applying this method, we successfully reveal the intricate 3D arrangements of gold nanoparticles assembled in various structures (N = 4, 5, 6 particles), including those resembling tetrahedral and other polyhedral geometries.
+- **3D Reconstruction Technique:** The paper introduces CS-DART, an advanced algorithm that combines compressed sensing and discrete tomographic principles to enhance the 3D reconstruction of colloidal particles from electron tomography data acquired in liquid cells with HAADF-STEM imaging mode.
+- **Complex Structures Unveiled:** By applying this method, we successfully reveal the 3D arrangements of gold nanoparticles assembled in various structures (N = 4, 5, 6 particles), including those resembling tetrahedral and other polyhedral geometries.
 - **Quantitative Analysis:** The study goes beyond qualitative imaging, providing a quantitative framework to analyze the morphology and spatial relationships of the nanoparticles within the assemblies. This includes measurements of particle centroids, volumes, surface areas, and solidity, along with the computation of alpha shapes to describe the overall shape of the assemblies.
-- **Experimental Validation:** The approach is validated against synthetic datasets and experimental data, demonstrating its effectiveness in accurately reconstructing and characterizing structures that are otherwise challenging to interpret due to the complexities introduced by the liquid environment.
+- **Experimental Validation:** The approach is validated against synthetic datasets and experimental datasets, demonstrating its effectiveness in accurately reconstructing and characterizing structures that are otherwise challenging to interpret due to the complexities introduced by the liquid environment.
 
 
 ## System Requirements
@@ -69,7 +69,7 @@ The setup should take less than a minute on a normal desktop computer.
    ```matlab
    ex01_step02_N4Liquid
    ```
-The dataset that contains 3D reconstructions and quantitative indicators for 3 different colloidal system (N = 4, N=5 and N=6) can be downloaded from the [Zenodo](https://zenodo.org/records/11175299/)
+The dataset that contains 3D reconstructions and quantitative indicators for 3 different colloidal system (N = 4, N=5 and N=6) can be downloaded from the [Zenodo](https://zenodo.org/records/11175299/files/Liquid_Nat_Comm_datasets.zip?download=1&preview=1)
 
 ### Expected Output
 - The first script (`ex01_step01_N4Liquid.m`) will output a CS-DART reconstructed volume saved as `csdart_reconstructed_volume.rec` in the `data` folder.
