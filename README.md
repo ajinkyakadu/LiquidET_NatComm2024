@@ -10,10 +10,7 @@ This repository contains the reconstruction algorithm (CS-DART) and post-process
   year={2023}
 }
 ```
-This paper presents a novel approach to understanding the true three-dimensional (3D) structure of small colloidal assemblies within liquid cells using fast electron tomography. We introduce a new reconstruction algorithm, CS-DART (Compressed Sensing Discrete Algebraic Reconstruction Technique), designed to address the unique challenges posed by the high electron dose sensitivity of samples and the presence of liquid in high-angle annular dark-field scanning transmission electron microscopy (HAADF-STEM) imaging.
-
-**Key Highlights:**
-
+This paper presents a novel approach to understanding the true three-dimensional (3D) structure of small colloidal assemblies within liquid cells using fast electron tomography. We introduce a new reconstruction algorithm, CS-DART (Compressed Sensing Discrete Algebraic Reconstruction Technique), designed to address the unique challenges posed by the high electron dose sensitivity of samples and the presence of liquid in high-angle annular dark-field scanning transmission electron microscopy (HAADF-STEM) imaging.  
 - **Innovative Technique:** The paper introduces CS-DART, an advanced algorithm that combines compressed sensing and discrete tomographic principles to enhance the reconstruction of colloidal particles from electron tomography data acquired in liquid cells.
 - **Complex Structures Unveiled:** By applying this method, we successfully reveal the intricate 3D arrangements of gold nanoparticles assembled in various structures (N = 4, 5, 6 particles), including those resembling tetrahedral and other polyhedral geometries.
 - **Quantitative Analysis:** The study goes beyond qualitative imaging, providing a quantitative framework to analyze the morphology and spatial relationships of the nanoparticles within the assemblies. This includes measurements of particle centroids, volumes, surface areas, and solidity, along with the computation of alpha shapes to describe the overall shape of the assemblies.
