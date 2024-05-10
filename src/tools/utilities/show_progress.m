@@ -37,34 +37,47 @@ if nargin < 3
     N1 = 1;
 end
 
-L = 30; % Length of the progress bar
-buf = ''; % Initialize buffer for building output string
+L = 30; % Length of progress bar
+buf = ''; % Create buffer to accumulate output
 
-% Start timing and initialize on the first iteration
 if i == N1
-    t_start = tic; % Store the start time
-    t_prev = tic;  % Initialize previous update time
-elseif toc(t_prev) < 0.1 && i ~= N2 % Limit update frequency
+    t_start = tic; % Remember the timestamp of start
+    t_prev = t_start;
+elseif toc(t_prev) < 0.1  && i ~= N2 % Add limit on update frequecy
     return
 else
-    t_prev = tic; % Update the previous update time
-    buf = repmat('\b', 1, L + 40); % Prepare to clear previous output
+    t_prev = tic; % Reset update timeout
+    for k = 1:(L + 40)
+        buf = [buf '\b']; % Clear output from the previous iteration
+    end
 end
 
-% Calculate progress percentage
-p = (i - N1) / ((N2 - N1 + step) / step);
+if N2 ~= N1
+    p = (i - N1) / (N2 - N1) / step; % Current progress as fraction of time
+else
+    p = 1;
+end
 
-% Build progress bar string
-bar = ['[' repmat('#', 1, round(L * p)) repmat('.', 1, L - round(L * p)) ']'];
-percent = sprintf('%4d%%', round(100 * p)); % Format progress in percent
+buf = [buf '['];
+for k = 1:round(L * p) % Fill progress bar for elapsed time
+    buf = [buf '#'];
+end
+for k = 1:(L - round(L * p)) % Fill the rest with white spaces
+    buf = [buf '.'];
+end
+buf = [buf ']'];
 
-% Calculate elapsed and remaining time
+buf = [buf sprintf('%4d', round(100 * p)) '%%']; % Print progress in percents
+
+% Print elapsed time and time left in mm:ss format
 elapsed = toc(t_start);
-remaining = (elapsed / p) - elapsed; % Estimate remaining time
-
-% Format times and build final string for output
-time_str = sprintf(' (elapsed/left: %s/%s)\n', time2str(elapsed), time2str(remaining));
-fprintf([buf bar percent time_str]);
+if p > 0 % Avoid division by zero
+    left = elapsed / p - elapsed;
+else
+    left = 0;
+end
+buf = [buf sprintf(' (elapsed/left: %s/%s)\n', time2str(elapsed), time2str(left))];
+% Print to stdout
+fprintf(buf);
 
 end
-
