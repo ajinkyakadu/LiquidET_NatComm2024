@@ -130,7 +130,7 @@ end
 
 
 function printEpochInfo(i, hist, time_iter, time_hist, epochs)
-    fprintf('%5d %15.5e | %10.1e %10.1e %10.2e [%4.2e/%4.2e]\n', i, hist.rel_res(i),
+    fprintf('%5d %15.5e | %10.1e %10.1e %10.2e [%4.2e/%4.2e]\n', i, hist.rel_res(i),...
             hist.u1(i), hist.kappa(i), hist.nnzV(i), time_hist, (epochs * time_iter));
 end
 
