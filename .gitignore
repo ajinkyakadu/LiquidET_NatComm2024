@@ -280,4 +280,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Additional files
+/src/external
+
 # End of https://www.toptal.com/developers/gitignore/api/matlab,python,windows,macos,linux
