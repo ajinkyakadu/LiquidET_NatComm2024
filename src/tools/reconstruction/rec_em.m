@@ -1,11 +1,12 @@
-function rec = rec_em(stack, iterations, time)
-%REC_EM Perform reconstruction using the expectation minimization (EM) algorithm.
-%   rec = REC_EM(stack) performs reconstruction of the whole stack using 150 iterations.
-%   rec = REC_EM(stack, iter) specifies the number of iterations.
-%   rec = REC_EM(stack, iter, start_slice, end_slice) specifies the range of 
-%       stack rows to use for reconstruction.
-%   rec = REC_EM(stack, iter, time) shows a progress bar
-%       and overall time taken for reconstruction. The default is 1.
+function rec = rec_em(stack, iterations, start_slice, end_slice, time)
+%REC_EM Perform reconstruction using expectation minimization algorithm.
+%   REC = REC_EM(STACK) - performs reconstruction of the whole stack using 150 iterations.
+%   REC = REC_EM(STACK, ITER) - specify the numer of iterations.
+%   REC = REC_EM(STACK, ITER, START_SLICE, END_SLICE) - specify the range of stack
+%       rows to use for reconstruction.
+%   REC = REC_EM(STACK, ITER, []) - reconstructs the middle row of the stack.
+%   REC = REC_EM(STACK, ITER, START_SLICE, END_SLICE, TIME) - show progressbar
+%       and overall time taken for reconstruction. Default 1.
 %
 % Inputs:
 %   stack       - Structure containing the tomographic data and corresponding angles.
@@ -18,7 +19,7 @@ function rec = rec_em(stack, iterations, time)
 % Example:
 %   stack.data = rand(128, 128, 100);
 %   stack.angles = linspace(0, 180, 100);
-%   rec = rec_em(stack, 100, 1);
+%   rec = rec_em(stack, 100, 10, 100, 1);
 %
 % Requires:
 %   ASTRA Toolbox installed and a CUDA-supporting GPU.
@@ -29,71 +30,64 @@ function rec = rec_em(stack, iterations, time)
 % 
 % May 20, 2023
 
-% Validate the presence of a GPU
-assert(gpuDeviceCount > 0, 'No CUDA-supporting GPU found. Try using SIRT.');
+assert(gpuDeviceCount > 0, 'No CUDA-supporting GPU found. Try using SIRT');
 
-if nargin < 2 || isempty(iterations), iterations = 15; end
-if nargin < 3, time = true; end
-
-if  ~isa(stack, 'TiltSeries') && ...
-    ~(isfield(stack, 'data') && isfield(stack, 'angles'))
-    error(['Insufficient data. The input must provide a series of ' ...
-           'images and the corresponding tilt angles'])
+if nargin < 5, time = 1; end
+if time
+    disp('Performing reconstruction by expectation maximization (EM) algorithm...');
 end
 
-if ismatrix(stack.data)
-    stack.data = reshape(stack.data, ...
-                               [1 size(stack.data)]);
+if ndims(stack.data) == 3    
+    [rows,cols,n_angles] = size(stack.data);
+    sino = permute(stack.data,[3 2 1]);
+elseif ndims(stack.data) == 2
+    [cols,n_angles] = size(stack.data);
+    rows = 1;
+    sino = stack.data';
+else
+    error('Stack data should be 2D or 1D projections')
 end
-
-[n_rows, n_columns, n_angles] = size(stack.data);
 
 if n_angles ~= length(stack.angles)
-    error(['Number of specified angles is different from number of ' ...
-           'projections in stack.'])
+    error('Number of specified angles is different from number of projections in stack.')
 end
 
-% We will reconstruct the object slice-by-slice, so geometry is 2D
-% In Astra the object is assumed to be rotating around vertical axis
+if nargin < 2, iterations = 15; end
+if nargin < 3, start_slice = 1; end
+if nargin < 4, end_slice = size(stack.data, 1); end
+
+% Convert angles to radians
 angles = deg2rad(stack.angles);
-proj_geom = astra_create_proj_geom('parallel', 1, n_columns, angles);
-vol_geom = astra_create_vol_geom(n_columns, n_columns);
-stack.data = permute(stack.data, [3 2 1]); % To simplify slicing
-reconstruction = zeros(n_columns, n_columns, n_rows, 'like', stack.data);
 
-if time
-    disp(['Performing reconstruction using EM algorithm...']);
-    progress_bar = ConsoleProgressbar(n_rows);
-end
+% Set geometry in ASTRA
+proj_geom = astra_create_proj_geom('parallel', 1, cols, angles);
+vol_geom = astra_create_vol_geom(cols, cols);
 
-initial_value = 1;
+% Allocate array for reconstruction
+rec = zeros(cols, cols, end_slice - start_slice + 1);
 
-for slice = 1:n_rows
-    % Convert slice to 2D array
-    sino_slice = stack.data(:, :, slice);
-    % Send sinogram to ASTRA
-    sinogram_id = astra_mex_data2d('create','-sino', proj_geom, sino_slice);
-    % Allocate space for slice reconstruction in ASTRA
-    reconstruction_id = astra_mex_data2d('create', '-vol', vol_geom, initial_value);
-
-    % Initialize algorithm
-    algorithm_config = astra_struct('EM_CUDA');
-    algorithm_config.ProjectionDataId = sinogram_id;
-    algorithm_config.ReconstructionDataId = reconstruction_id;
-    algorithm_id = astra_mex_algorithm('create', algorithm_config);
-
-    % Perform reconstruction of the slice
-    astra_mex_algorithm('iterate', algorithm_id, iterations);
-
-    % Save reconstructed slice
-    reconstruction(:,:,slice) = astra_mex_data2d('get', reconstruction_id);
-
-    % Clean GPU memory
-    astra_mex_algorithm('delete', algorithm_id)
-    astra_mex_data2d('delete', sinogram_id, reconstruction_id)
-
+% Iterate through all needed slices
+for slice = start_slice:end_slice
     % Print progress if needed
     if time
-        progress_bar.update();
+        show_progress(slice, start_slice, end_slice);
     end
+    % Convert slice to 2D array
+    sino_slice = squeeze(sino(:,:,slice));
+    % Send sinogram to ASTRA
+    sinogram_id = astra_mex_data2d('create','-sino', proj_geom, sino_slice);
+    % Allocate space for slice reconstruction is ASTRA
+    reconstruction_id = astra_mex_data2d('create', '-vol', vol_geom, 1);
+    % Initialize algorithm
+    cfg = astra_struct('EM_CUDA');
+    cfg.ProjectionDataId = sinogram_id;
+    cfg.ReconstructionDataId = reconstruction_id;
+    algId = astra_mex_algorithm('create', cfg);
+    % Perform reconstruction of the slice
+    astra_mex_algorithm('iterate', algId, iterations);
+    % Save reconstructed slice
+    rec(:,:,slice-start_slice+1) = astra_mex_data2d('get', reconstruction_id);
+    % Clean GPU memory
+    astra_mex_algorithm('delete', algId)
+    astra_mex_data2d('delete', sinogram_id, reconstruction_id)
 end
