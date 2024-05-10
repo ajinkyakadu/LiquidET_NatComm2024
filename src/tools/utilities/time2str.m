@@ -1,4 +1,4 @@
-function str = time2str(t)
+function string = time2str(t)
 %TIME2STR Converts time in seconds to a formatted string in 'hh:mm:ss' format.
 %
 % Usage:
@@ -26,14 +26,11 @@ function str = time2str(t)
 % 
 % May 20, 2023
 
-% Ensure input is non-negative
-t = abs(t);
-
-% Calculate hours, minutes, and seconds
-hours = floor(t / 3600);
-minutes = floor(mod(t, 3600) / 60);
-seconds = mod(t, 60);
-
-% Format the string as 'hh:mm:ss'
-str = sprintf('%02d:%02d:%02d', hours, minutes, seconds);
+% Converts timestamp to a string in mm:ss format
+t = int32(t);
+h = t / 3600;
+t = mod(t, 3600);
+m = t / 60;
+s = mod(t, 60);
+string = [sprintf('%01d',h) ':' sprintf('%02d',m) ':' sprintf('%02d',s)];
 end
