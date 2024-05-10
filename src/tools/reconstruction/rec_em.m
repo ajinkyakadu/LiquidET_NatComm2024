@@ -34,7 +34,7 @@ assert(gpuDeviceCount > 0, 'No CUDA-supporting GPU found. Try using SIRT');
 
 if nargin < 5, time = 1; end
 if time
-    disp('Performing reconstruction by expectation maximization (EM) algorithm...');
+    disp('Performing reconstruction by expectation maximization (EM) algorithm...\n');
 end
 
 if ndims(stack.data) == 3    
