@@ -27,10 +27,6 @@ function [regularity_index] = computeRegularityIndex(shp)
 % 
 % June 4, 2023
 
-% Validate input
-if ~isfield(shp, 'Points')
-    error('Input structure must contain a ''Points'' field.');
-end
 vertices = shp.Points;
 if size(vertices, 2) ~= 3
     error('Vertices must be given as an N-by-3 matrix.');
