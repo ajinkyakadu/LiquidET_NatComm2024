@@ -69,7 +69,7 @@ The setup should take less than a minute on a normal desktop computer.
    ```matlab
    ex01_step02_N4Liquid
    ```
-The dataset that contains 3D reconstructions and quantitative indicators for 3 different colloidal system (N = 4, N=5 and N=6) can be downloaded from the [Zenodo](https://zenodo.org/records/11175299/files/Liquid_Nat_Comm_datasets.zip?download=1&preview=1)
+The dataset that contains 3D reconstructions and quantitative indicators for 3 different colloidal system (N = 4, N=5 and N=6) can be downloaded from [Zenodo](https://zenodo.org/records/11175299/files/Liquid_Nat_Comm_datasets.zip?download=1&preview=1). Zenodo DOI: 10.5281/zenodo.11175299
 
 ### Expected Output
 - The first script (`ex01_step01_N4Liquid.m`) will output a CS-DART reconstructed volume saved as `csdart_reconstructed_volume.rec` in the `data` folder.
