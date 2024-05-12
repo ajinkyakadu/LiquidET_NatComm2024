@@ -282,5 +282,6 @@ $RECYCLE.BIN/
 
 # Additional files
 /src/external
+*.rec
 
 # End of https://www.toptal.com/developers/gitignore/api/matlab,python,windows,macos,linux
