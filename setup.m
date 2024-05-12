@@ -16,7 +16,7 @@ if ~exist(target_folder, 'dir')
 end
 
 fprintf('=============================================================\n');
-fprintf('               setting up DynamicXRayCT                      \n');
+fprintf('               setting up LiquidET_NatComm2024               \n');
 fprintf('-------------------------------------------------------------\n');
 
 % Download and extract toolboxes
