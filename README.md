@@ -121,7 +121,7 @@ To adapt the software for your data:
    Ensure your data is formatted correctly and placed in the `data` directory.
 
 2. **Script Adjustments**
-   - Modify `ex01_step01_N4Liquid.m` to reference your dataset.
+   - Modify `ex01_step01_N4Liquid.m` to reference your dataset and adjust parameters for CS-DART reconstruction scheme.
    - Adjust parameters like `cropRadius` and `minArea` in `ex01_step02_N4Liquid.m` to fit your data.
 
 3. **Execute the Analysis**
