@@ -27,7 +27,7 @@ dataDir = fullfile(homeDir, 'data/N4/');  % Path to the data directory
 % The 'dataset.mat' file should contain a variable 'stack' with the tilt series data.
 
 
-load([dataDir 'dataset.mat'], 'stack');
+load([dataDir 'N4_liquid_sample_stack.mat'], 'stack');
 
 % Convert to single precision for computational efficiency and normalize intensities.
 stack.data = rescale(im2single(stack.data));
