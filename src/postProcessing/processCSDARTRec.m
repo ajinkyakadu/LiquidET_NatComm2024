@@ -28,6 +28,9 @@ function [K, It] = processCSDARTRec(I, cropRadius, minArea)
 if nargin < 2, cropRadius = 0.9; end
 if nargin < 3, minArea = 150; end
 
+% remove the shell (weak intensities)
+I(I < 0.5) = 0;
+
 % Calculate the size of the image
 n = size(I);
 
