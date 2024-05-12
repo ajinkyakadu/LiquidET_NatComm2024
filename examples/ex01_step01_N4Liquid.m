@@ -66,11 +66,11 @@ ylim([0 1000]); % Adjust this based on your data's intensity distribution
 %     - kappa: Regularization parameter, usually in the range 0.01-0.1.
 
 
-css_opt = struct('nDCT', [10 10 10], ... % Smoothing coefficients
-                 'innerIt', 40, ...      % Number of inner iterations
-                 'kappa', 0.01);         % Regularization parameter
+css_opt = struct('nDCT', [15 15 15], ... % Smoothing coefficients
+                 'innerIt', 30, ...      % Number of inner iterations
+                 'kappa', 0.05);         % Regularization parameter
                  
-maxIter = 50;       % Maximum number of iterations, typically 30-100
+maxIter = 40;       % Maximum number of iterations, typically 30-100
 numMat  = 2;        % Number of materials to segment, adjust as necessary
 
 uval = [0.1 0.6];   % Intensity values for materials, set based on histogram
