@@ -24,7 +24,7 @@ close all;
 homeDir = '../';
 dataDir = fullfile(homeDir, 'data/N4/');  % Data directory where results are saved
 
-stack.pix_sz = 0.772; % Pixel size in nm (adjust according to your acquisition parameters)
+stack.pix_sz = 0.367; % Pixel size in nm (adjust according to your acquisition parameters)
 
 %% Load reconstructed volume
 
@@ -67,7 +67,7 @@ end
 % Alpha shape to describe the overall geometry of the assembly
 % Adjust the alpha radius based on the particle spacing and distribution
 
-shp = alphaShape(PartCentroid(:, 1), PartCentroid(:, 2), PartCentroid(:, 3), 50);
+shp = alphaShape(PartCentroid(:, 1), PartCentroid(:, 2), PartCentroid(:, 3));
 
 %% Compute shape parameters
 % Compute various metrics from the alpha shape to describe the global structure
