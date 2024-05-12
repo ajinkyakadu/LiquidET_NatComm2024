@@ -1,6 +1,14 @@
-# LiquidET_NatComm2024
+<h1 align="center">LiquidET_NatComm2024</h1>
+<p align="center">
+  <b>Reconstruction Algorithm and Post-Processing for 3D Colloidal Assemblies</b>
+</p>
 
-This repository contains the reconstruction algorithm (CS-DART) and post-processing codes that are used in the following paper
+---
+
+## About This Repository
+
+This repository features the **CS-DART** (Compressed Sensing Discrete Algebraic Reconstruction Technique) algorithm and associated post-processing codes. These are central to the research presented in our submission to *Nature Communications*. The details are as follows:
+
 ```bibtex
 @article{arenas2023liquid,
   title={Liquid phase fast electron tomography unravels the true 3D structure of colloidal assemblies},
@@ -10,80 +18,118 @@ This repository contains the reconstruction algorithm (CS-DART) and post-process
   year={2023}
 }
 ```
-This paper presents a novel approach to understanding the true three-dimensional (3D) structure of small colloidal assemblies within liquid cells using fast electron tomography. We introduce a new reconstruction algorithm, CS-DART (Compressed Sensing Discrete Algebraic Reconstruction Technique), designed to address the unique challenges posed by the high electron dose sensitivity of samples and the presence of liquid in high-angle annular dark-field scanning transmission electron microscopy (HAADF-STEM) imaging.  
-- **3D Reconstruction Technique:** The paper introduces CS-DART, an advanced algorithm that combines compressed sensing and discrete tomographic principles to enhance the 3D reconstruction of colloidal particles from electron tomography data acquired in liquid cells with HAADF-STEM imaging mode.
-- **Complex Structures Unveiled:** By applying this method, we successfully reveal the 3D arrangements of gold nanoparticles assembled in various structures (N = 4, 5, 6 particles), including those resembling tetrahedral and other polyhedral geometries.
-- **Quantitative Analysis:** The study goes beyond qualitative imaging, providing a quantitative framework to analyze the morphology and spatial relationships of the nanoparticles within the assemblies. This includes measurements of particle centroids, volumes, surface areas, and solidity, along with the computation of alpha shapes to describe the overall shape of the assemblies.
-- **Experimental Validation:** The approach is validated against synthetic datasets and experimental datasets, demonstrating its effectiveness in accurately reconstructing and characterizing structures that are otherwise challenging to interpret due to the complexities introduced by the liquid environment.
+CS-DART combines compressed sensing with discrete tomographic principles to improve the 3D reconstruction of colloidal particles in liquid environment under HAADF-STEM imaging, despite the high electron dose sensitivity and significant missing wedge issues faced due to liquid-cell holder.
 
+## Highlights
+
+- **Advanced 3D Reconstruction**: CS-DART improves the reconstruction of colloidal particles from electron tomography data, revealing structures in liquid conditions.
+  
+- **Complex Structures Unveiled:** This method reveals the detailed 3D arrangements of gold nanoparticles, uncovering structures like tetrahedrals and other polyhedral geometries for particles counts N = 4, 5, 6.
+
+- **Quantitative Analysis:** Provides detailed morphological analysis and spatial relationship metrics, utilizing alpha shapes for overall shape description.
+
+- **Experimental Validation:** Demonstrates effectiveness against both synthetic and experimental datasets in challenging liquid environments.
+
+---
 
 ## System Requirements
 
-### Software Dependencies and Operating Systems
-- **MATLAB**: The code has been tested with MATLAB R2023a.
-- **Operating System**: Windows 10.
-- **MATLAB Toolboxes**: This code uses functions from the following MATLAB toolboxes:
-  - Image Processing Toolbox
-  - Statistics and Machine Learning Toolbox
-  - Computer Vision Toolbox (optional for some functions)
-  
-Ensure these toolboxes are installed and activated in your MATLAB environment.
+### Software Dependencies
 
-### Versions Tested
-The code has been tested on:
-- MATLAB R2023a
-- Windows 10
+- **MATLAB**: Tested with MATLAB R2023a.
+- **Operating Systems**: Windows 10.
 
-### Required Hardware
-- A standard desktop computer with at least 32 GB of RAM.
-- A modern CPU (tested on Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz).
-- A GPU with at least 8 GB of memory (tested with Nvidia RTX 2070).
+### MATLAB Toolboxes Required
+
+- Image Processing Toolbox
+- Statistics and Machine Learning Toolbox
+- Computer Vision Toolbox (optional for some functions)
+
+### Hardware Requirements
+
+- Minimum **32 GB RAM**.
+- **CPU**: Intel(R) Core(TM) i7-8700 @ 3.20GHz or similar.
+- **GPU**: At least 8 GB of memory, tested with Nvidia RTX 2070.
+
+### External Dependencies
+
+- **ASTRA-Toolbox** v2.1.0: A framework for tomographic operators. [More Info](https://astra-toolbox.com/)
+- **SPOT**: Simplifies modeling of linear operators in tomography. [More Info](https://www.cs.ubc.ca/labs/scl/spot/index.html)
+- **MinConf Optimization Package**: Optimizes objectives including CS-DART. [More Info](https://www.cs.ubc.ca/~schmidtm/Software/minConf.html)
+
+---
 
 ## Installation Guide
 
-1. **Download the Repository**: Clone or download this repository to your local machine.
+### Getting Started
+
+1. **Clone the Repository**
    ```bash
    git clone https://github.com/ajinkyakadu/LiquidET_NatComm2024.git
    cd LiquidET_NatComm2024
    ```
-2. **Run the Setup Script**: Navigate to the main directory and run the `setup.m` script in MATLAB to set up the necessary paths.
+
+2. **Set Up MATLAB Environment**
    ```matlab
    run('setup.m');
    ```
-   
-### Typical Install Time
-The setup should take less than a minute on a normal desktop computer.
 
-## Demo
+#### Installation Time
 
-### Instructions to Run the Demo
-1. **Navigate to the Examples Directory**: Change directory to the `examples` folder.
+- Typical setup time is under **1 minute** on a standard desktop.
+
+
+---
+
+### Quick Start Guide
+
+1. **Prepare the Environment**
    ```matlab
    cd examples
    ```
-2. **Run the Reconstruction Script**: Execute the `ex01_step01_N4Liquid.m` script to perform CS-DART reconstruction for N=4 tetrahedral colloidal assembly
+
+2. **Run Reconstruction Script**
    ```matlab
    ex01_step01_N4Liquid
    ```
-3. **Run the Post-Processing Script**: Execute the `ex01_step02_N4Liquid.m` script to obtain quantitative indicators for N=4 tetrahedral colloidal assembly
+
+3. **Execute Post-Processing**
    ```matlab
    ex01_step02_N4Liquid
    ```
-The dataset that contains 3D reconstructions and quantitative indicators for 3 different colloidal system (N = 4, N=5 and N=6) can be downloaded from [Zenodo](https://zenodo.org/records/11175299/files/Liquid_Nat_Comm_datasets.zip?download=1&preview=1). Zenodo DOI: 10.5281/zenodo.11175299
 
-### Expected Output
-- The first script (`ex01_step01_N4Liquid.m`) will output a CS-DART reconstructed volume saved as `csdart_reconstructed_volume.rec` in the `data` folder.
-- The second script (`ex01_step02_N4Liquid.m`) will produce various quantitative descriptors saved as `quant_descriptors_NP.mat` in the `data` folder.
+#### Expected Outputs
 
-### Expected Run Time for Demo
-- The demo is expected to run for approximately 30 minutes on a "normal" desktop computer.
+- **Reconstructed Volume**: Saved as `csdart_reconstructed_volume.rec` in the `data` folder.
+- **Quantitative Descriptors**: Stored as `quant_descriptors_NP.mat` in the `data` folder.
 
-## Instructions for Use
+#### Expected Demo Time
 
-To run the software on your own data:
+- Approximately **30 minutes** on a standard desktop.
 
-1. **Prepare Your Data**: Ensure your data is in the required format and place it in the `data` directory.
-2. **Modify the Scripts**: 
-   - If needed, modify `ex01_step01_N4Liquid.m` to point to your data file instead of the provided dataset.
-   - Update parameters such as `cropRadius` and `minArea` in `ex01_step02_N4Liquid.m` based on your data characteristics.
-3. **Run the Scripts**: Follow the demo instructions but use your data paths and names.
+### Data Access
+
+Access the dataset for different colloidal systems (N = 4, 5, 6) at [Zenodo](https://zenodo.org/records/11175299/files/Liquid_Nat_Comm_datasets.zip?download=1&preview=1). Zenodo DOI: 10.5281/zenodo.11175299
+
+---
+
+## Usage
+
+To adapt the software for your data:
+
+1. **Data Preparation**
+   Ensure your data is formatted correctly and placed in the `data` directory.
+
+2. **Script Adjustments**
+   - Modify `ex01_step01_N4Liquid.m` to reference your dataset and adjust parameters for CS-DART reconstruction scheme.
+   - Adjust parameters like `cropRadius` and `minArea` in `ex01_step02_N4Liquid.m` to fit your data.
+
+3. **Execute the Analysis**
+   Follow the demo steps with your data specifics.
+
+---
+
+<div align="center">
+  <b>Explore. Reconstruct. Analyze.</b>
+</div>
+
