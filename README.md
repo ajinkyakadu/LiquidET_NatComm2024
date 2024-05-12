@@ -1,4 +1,9 @@
-# LiquidET_NatComm2024
+<h1 align="center">LiquidET_NatComm2024</h1>
+<p align="center">
+  <b>Reconstruction Algorithm and Post-Processing for 3D Colloidal Assemblies</b>
+</p>
+
+---
 
 This repository contains the reconstruction algorithm (CS-DART) and post-processing codes that are used in the following paper (currently submitted to Nature Communications)
 ```bibtex
