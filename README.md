@@ -1,6 +1,6 @@
 # LiquidET_NatComm2024
 
-This repository contains the reconstruction algorithm (CS-DART) and post-processing codes that are used in the following paper
+This repository contains the reconstruction algorithm (CS-DART) and post-processing codes that are used in the following paper (currently submitted to Nature Communications)
 ```bibtex
 @article{arenas2023liquid,
   title={Liquid phase fast electron tomography unravels the true 3D structure of colloidal assemblies},
@@ -10,11 +10,11 @@ This repository contains the reconstruction algorithm (CS-DART) and post-process
   year={2023}
 }
 ```
-This paper presents a novel approach to understanding the true three-dimensional (3D) structure of small colloidal assemblies within liquid cells using fast electron tomography. We introduce a new reconstruction algorithm, CS-DART (Compressed Sensing Discrete Algebraic Reconstruction Technique), designed to address the unique challenges posed by the high electron dose sensitivity of samples and the presence of liquid in high-angle annular dark-field scanning transmission electron microscopy (HAADF-STEM) imaging.  
-- **3D Reconstruction Technique:** The paper introduces CS-DART, an advanced algorithm that combines compressed sensing and discrete tomographic principles to enhance the 3D reconstruction of colloidal particles from electron tomography data acquired in liquid cells with HAADF-STEM imaging mode.
+This paper presents a novel approach to understanding the three-dimensional (3D) structure of small colloidal assemblies within liquid cells using fast electron tomography. We introduce a new reconstruction algorithm, CS-DART (Compressed Sensing Discrete Algebraic Reconstruction Technique), designed to address the challenges posed by the high electron dose sensitivity of samples and high missing wedge due to liquid cell holder in high-angle annular dark-field scanning transmission electron microscopy (HAADF-STEM) imaging.  
+- **3D Reconstruction Technique:** We introduce CS-DART, an advanced algorithm that combines compressed sensing and discrete tomographic principles to improve the 3D reconstruction of colloidal particles from electron tomography data acquired in liquid cells with HAADF-STEM imaging mode.
 - **Complex Structures Unveiled:** By applying this method, we successfully reveal the 3D arrangements of gold nanoparticles assembled in various structures (N = 4, 5, 6 particles), including those resembling tetrahedral and other polyhedral geometries.
-- **Quantitative Analysis:** The study goes beyond qualitative imaging, providing a quantitative framework to analyze the morphology and spatial relationships of the nanoparticles within the assemblies. This includes measurements of particle centroids, volumes, surface areas, and solidity, along with the computation of alpha shapes to describe the overall shape of the assemblies.
-- **Experimental Validation:** The approach is validated against synthetic datasets and experimental datasets, demonstrating its effectiveness in accurately reconstructing and characterizing structures that are otherwise challenging to interpret due to the complexities introduced by the liquid environment.
+- **Quantitative Analysis:** Beyond qualitative imaging, we provide a quantitative framework to analyze the morphology and spatial relationships of the nanoparticles within the assemblies. This includes measurements of particle centroids, volumes, surface areas, and solidity, along with the computation of alpha shapes to describe the overall shape of the assemblies.
+- **Experimental Validation:** We validate the approach against synthetic and experimental datasets, demonstrating its effectiveness in accurately reconstructing and characterizing structures that are otherwise challenging to interpret due to the complexities introduced by the liquid environment.
 
 
 ## System Requirements
@@ -38,6 +38,11 @@ The code has been tested on:
 - A standard desktop computer with at least 32 GB of RAM.
 - A modern CPU (tested on Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz).
 - A GPU with at least 8 GB of memory (tested with Nvidia RTX 2070).
+
+### Dependencies
+- **ASTRA-Toolbox**: This toolbox provides the computational framework for modeling tomographic operators. We have tested it with the version 2.1.0 (with is the latest version as of 2024). [link](https://astra-toolbox.com/)
+- **SPOT**: This toolbox facilitates modeling of tomography and other similar operators as a linear operator. [link](https://www.cs.ubc.ca/labs/scl/spot/index.html)
+- **MinConf Optimization Pacakge**: This package provides all the necessary tools to optimize the various objective involved including the ones for CS-DART objective with the constraints involved. [link](https://www.cs.ubc.ca/~schmidtm/Software/minConf.html)
 
 ## Installation Guide
 
