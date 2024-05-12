@@ -101,7 +101,7 @@ strOut.shape = struct('object', shp, ...
 strOut.meanID = mean(pdist(strOut.centroid) * stack.pix_sz);
 
 % Save the structured output to the same directory as the input data
-save([saveDir 'quant_descriptors_NP.mat'], 'strOut');
+save([dataDir 'quant_descriptors_NP.mat'], 'strOut');
 
 %% Visualize the alpha shape of the assembly
 
