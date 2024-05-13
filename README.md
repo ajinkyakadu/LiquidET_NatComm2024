@@ -109,7 +109,7 @@ CS-DART combines compressed sensing with discrete tomographic principles to impr
 
 ### Data Access
 
-Access the dataset for different colloidal systems (N = 4, 5, 6) at [Zenodo](https://zenodo.org/records/11175299/files/Liquid_Nat_Comm_datasets.zip?download=1&preview=1). Zenodo DOI: 10.5281/zenodo.11175299
+Access the dataset for different colloidal systems (N = 4, 5, 6) at [Zenodo](https://zenodo.org/records/11175299). Zenodo DOI: 10.5281/zenodo.11175299
 
 ---
 
