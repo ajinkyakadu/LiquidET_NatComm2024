@@ -1,7 +1,14 @@
-<h1 align="center">LiquidET_NatComm2024</h1>
+<h1 align="center"> 🔬 LiquidET_NatComm2024</h1>
 <p align="center">
   <b>Reconstruction Algorithm and Post-Processing for 3D Colloidal Assemblies</b>
 </p>
+
+<div align="center">
+  <img src="https://img.shields.io/badge/MATLAB-R2023a-blue" alt="MATLAB R2023a">
+  <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
+  <img src="https://img.shields.io/badge/Platform-Windows%2010-lightgrey" alt="Platform">
+</div>
+
 
 ---
 
@@ -22,13 +29,12 @@ CS-DART combines compressed sensing with discrete tomographic principles to impr
 
 ## Highlights
 
-- **Advanced 3D Reconstruction**: CS-DART improves the reconstruction of colloidal particles from electron tomography data, revealing structures in liquid conditions.
-  
-- **Complex Structures:** This method reveals the detailed 3D arrangements of gold nanoparticles, uncovering structures like tetrahedrals and other polyhedral geometries for particles counts N = 4, 5, 6.
-
-- **Quantitative Analysis:** Provides detailed morphological analysis and spatial relationship metrics, utilizing alpha shapes for overall shape description.
-
-- **Experimental Validation:** Demonstrates effectiveness against both synthetic and experimental datasets in challenging liquid environments.
+| Feature             | Description |
+|---------------------|-------------|
+| **Advanced 3D Reconstruction** | Enhances the resolution and detail of 3D structures in liquid conditions. |
+| **Complex Structures** | Reveals intricate geometries such as tetrahedrals and polyhedra for particle counts N = 4, 5, 6. |
+| **Quantitative Analysis** | Employs alpha shapes for detailed morphological and spatial metrics. |
+| **Experimental Validation** | Proven against both synthetic and experimental datasets in demanding liquid environments. |
 
 ---
 
@@ -47,9 +53,11 @@ CS-DART combines compressed sensing with discrete tomographic principles to impr
 
 ### Hardware Requirements
 
-- Minimum **32 GB RAM**.
-- **CPU**: Intel(R) Core(TM) i7-8700 @ 3.20GHz or similar.
-- **GPU**: At least 8 GB of memory, tested with Nvidia RTX 2070.
+| Component | Specification |
+|-----------|---------------|
+| RAM       | 32 GB Minimum |
+| CPU       | Intel(R) Core(TM) i7-8700 @ 3.20GHz or equivalent |
+| GPU       | Nvidia RTX 2070, 8 GB |
 
 ### External Dependencies
 
@@ -106,6 +114,8 @@ CS-DART combines compressed sensing with discrete tomographic principles to impr
 #### Expected Demo Time
 
 - Approximately **30 minutes** on a standard desktop.
+
+
 
 ### Data Access
 
