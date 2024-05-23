@@ -24,7 +24,7 @@ CS-DART combines compressed sensing with discrete tomographic principles to impr
 
 - **Advanced 3D Reconstruction**: CS-DART improves the reconstruction of colloidal particles from electron tomography data, revealing structures in liquid conditions.
   
-- **Complex Structures Unveiled:** This method reveals the detailed 3D arrangements of gold nanoparticles, uncovering structures like tetrahedrals and other polyhedral geometries for particles counts N = 4, 5, 6.
+- **Complex Structures:** This method reveals the detailed 3D arrangements of gold nanoparticles, uncovering structures like tetrahedrals and other polyhedral geometries for particles counts N = 4, 5, 6.
 
 - **Quantitative Analysis:** Provides detailed morphological analysis and spatial relationship metrics, utilizing alpha shapes for overall shape description.
 
